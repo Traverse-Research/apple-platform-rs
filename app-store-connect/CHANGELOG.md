@@ -6,6 +6,10 @@
 
 Released on ReleaseDate.
 
+## 0.7.1
+
+Released on 2025-12-10.
+
 * MSRV 1.81 -> 1.86.
 * `x509-certificate` 0.24 -> 0.25.
 
