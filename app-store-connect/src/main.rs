@@ -5,7 +5,7 @@
 // except according to those terms.
 
 use anyhow::Result;
-use app_store_connect::cli::Args;
+use traverse_app_store_connect::cli::Args;
 use clap::Parser;
 
 fn main() -> Result<()> {

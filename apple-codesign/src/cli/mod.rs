@@ -431,7 +431,7 @@ struct EncodeAppStoreConnectApiKey {
 #[cfg(feature = "notarize")]
 impl CliCommand for EncodeAppStoreConnectApiKey {
     fn run(&self, _context: &Context) -> Result<(), AppleCodesignError> {
-        let unified = app_store_connect::UnifiedApiKey::from_ecdsa_pem_path(
+        let unified = traverse_app_store_connect::UnifiedApiKey::from_ecdsa_pem_path(
             &self.issuer_id,
             &self.key_id,
             &self.private_key_path,

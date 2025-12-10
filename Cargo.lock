@@ -132,27 +132,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "app-store-connect"
-version = "0.7.0"
-dependencies = [
- "anyhow",
- "base64",
- "clap",
- "dirs",
- "env_logger",
- "jsonwebtoken",
- "log",
- "pem",
- "rand 0.8.5",
- "reqwest",
- "rsa",
- "serde",
- "serde_json",
- "thiserror 2.0.15",
- "x509-certificate",
-]
-
-[[package]]
 name = "apple-bom"
 version = "0.3.0"
 dependencies = [
@@ -181,7 +160,6 @@ name = "apple-codesign"
 version = "0.29.0"
 dependencies = [
  "anyhow",
- "app-store-connect",
  "apple-bundles",
  "apple-flat-package",
  "apple-xar",
@@ -243,6 +221,7 @@ dependencies = [
  "tar",
  "tempfile",
  "thiserror 2.0.15",
+ "traverse-app-store-connect",
  "trycmd-indygreg-fork",
  "tungstenite",
  "uuid",
@@ -3790,6 +3769,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b9d12581f227e93f094d3af2ae690a574abb8a2b9b7a96e7cfe9647b2b617678"
 dependencies = [
  "once_cell",
+]
+
+[[package]]
+name = "traverse-app-store-connect"
+version = "0.7.0"
+dependencies = [
+ "anyhow",
+ "base64",
+ "clap",
+ "dirs",
+ "env_logger",
+ "jsonwebtoken",
+ "log",
+ "pem",
+ "rand 0.8.5",
+ "reqwest",
+ "rsa",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.15",
+ "x509-certificate",
 ]
 
 [[package]]

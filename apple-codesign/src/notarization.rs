@@ -15,7 +15,7 @@ and waiting on the availability of a notarization ticket.
 
 use {
     crate::{reader::PathType, AppleCodesignError},
-    app_store_connect::{notary_api, AppStoreConnectClient, ConnectTokenEncoder, UnifiedApiKey},
+    traverse_app_store_connect::{notary_api, AppStoreConnectClient, ConnectTokenEncoder, UnifiedApiKey},
     apple_bundles::DirectoryBundle,
     log::warn,
     sha2::Digest,
