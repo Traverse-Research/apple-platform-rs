@@ -181,6 +181,7 @@ fn download_coreutils_artifact(
 
             let archive_name = archive
                 .file_names()
+                .filter_map(Result::ok)
                 .find(|f| f.ends_with(multicall_filename))
                 .ok_or_else(|| anyhow!("could not find multicall binary in zip file"))?
                 .to_string();
