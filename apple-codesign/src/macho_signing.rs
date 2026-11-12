@@ -430,6 +430,11 @@ impl<'data> MachOSigner<'data> {
         }
 
         if let Some((signing_key, signing_cert)) = settings.signing_key() {
+            if let Some(callback) = settings.code_directory_callback() {
+                if let Some(code_directory) = builder.code_directory() {
+                    callback(&code_directory.to_blob_bytes()?);
+                }
+            }
             builder.create_cms_signature(
                 signing_key,
                 signing_cert,
