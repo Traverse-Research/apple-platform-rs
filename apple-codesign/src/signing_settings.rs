@@ -298,6 +298,7 @@ impl ScopedSetting {
 pub struct SigningSettings<'key> {
     // Global settings.
     signing_key: Option<(&'key dyn KeyInfoSigner, CapturedX509Certificate)>,
+    code_directory_callback: Option<&'key dyn Fn(&[u8])>,
     certificates: Vec<CapturedX509Certificate>,
     time_stamp_url: Option<Url>,
     signing_time: Option<chrono::DateTime<chrono::Utc>>,
@@ -342,6 +343,18 @@ impl<'key> SigningSettings<'key> {
         public: CapturedX509Certificate,
     ) {
         self.signing_key = Some((private, public));
+    }
+
+    /// Obtain the function called with each code directory before the signing key signs it.
+    pub fn code_directory_callback(&self) -> Option<&'key dyn Fn(&[u8])> {
+        self.code_directory_callback
+    }
+
+    /// Call `callback` with the blob of each Mach-O code directory right before the signing key
+    /// signs the CMS attributes over it, so a signer that only gets those attributes can also
+    /// have the code directory they cover.
+    pub fn set_code_directory_callback(&mut self, callback: &'key dyn Fn(&[u8])) {
+        self.code_directory_callback = Some(callback);
     }
 
     /// Obtain the certificate chain.
@@ -1267,6 +1280,7 @@ impl<'key> SigningSettings<'key> {
     ) -> Self {
         Self {
             signing_key: self.signing_key.clone(),
+            code_directory_callback: self.code_directory_callback,
             certificates: self.certificates.clone(),
             time_stamp_url: self.time_stamp_url.clone(),
             signing_time: self.signing_time,
